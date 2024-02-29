@@ -6,10 +6,19 @@ const { DOMParser } = require('xmldom');
 const fs = require('fs');
 const fsPromises = require('fs').promises;
 
-// for every html file in the directory
-fs.readdir('./public', (err, files) => {
+const args = process.argv.slice(2);
 
-  // if no html files are found in the directory, tell the user  
+const path = args[0] || './public';
+
+// for every html file in the directory
+fs.readdir(path, (err, files) => {
+  console.log(path)
+  if (err) {
+    console.log('Error reading the directory');
+    return;
+  }
+
+  // if no html files are found in the directory, tell the user
   if (!files.some(file => file.includes('.html')))
   {
     console.log('No html files found in the directory');
@@ -18,7 +27,7 @@ fs.readdir('./public', (err, files) => {
 
   files.forEach(async file => {
     if (file.includes('.html')) {
-      file = `./public/${file}`;
+      file = `${path}/${file}`;
 
       injectStyle(file);
 

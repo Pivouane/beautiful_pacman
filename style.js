@@ -6,7 +6,7 @@ const headRegexp = /<head>[\s\S]+<\/head>/;
 const fs = require('fs').promises;
 
 const injectStyle = async (file) => {
-  const cssFile = file.replace('.html', '.css').replace('./public/', '');
+  const cssFile = file.split('/').pop().replace('.html', '.css');
   const styleRef = `<link rel="stylesheet" type="text/css" href="${cssFile}">`;
   let data = await fs.readFile(file, 'utf8');
   if (data.match(styleRegexp)) {

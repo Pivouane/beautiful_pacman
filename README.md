@@ -14,11 +14,12 @@ npm install
 
 ```bash
 
-npm start
+node index.js <path_to_the_html_folder>
 
 ```
 
-Make sure to have any of your `*.html` files in the public folder. 🐡
+Make sure to call the script with the path to the folder containing the HTML files you want to beautify.
+In other cases, the script will work in the public folder.
 
 ## Contributing
 
